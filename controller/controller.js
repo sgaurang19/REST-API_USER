@@ -106,6 +106,7 @@ class Controlller {
                 log.info(`users/login :- User logged in unsuccefully - ${email}`)
                 
                 res.send("authentication failed")
+                
             }
         }
         catch(err){
