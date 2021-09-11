@@ -19,3 +19,57 @@
 2021-09-07T04:15:16.350Z [] error: users/login :- User logged in failed RangeError [ERR_HTTP_INVALID_STATUS_CODE]: Invalid status code: login Successful 
 
 2021-09-07T04:15:21.597Z [] info: users/login :- User logged in succefully - gaurang@gmail.com
+2021-09-07T10:19:53.141Z [] info: users/login :- User logged in succefully - gaurang@gmail.com
+2021-09-07T10:24:14.078Z [] info: user/register :- The user is already Registed with this email: gaurang@gmail.com
+2021-09-07T10:30:17.061Z [] info: user/register :- The user is already Registed with this email: gaurang@gmail.com
+2021-09-07T10:39:16.460Z [] info: user/register :- The user is already Registed with this email: string@gmail.com
+2021-09-07T11:22:43.957Z [] info: user/register :- The user is already Registed with this email: string123@gmail.com
+2021-09-07T11:24:37.623Z [] info: users/register :- User added succefully - 
+2021-09-07T15:40:53.150Z [] info: users/update :- User updated succefully}
+2021-09-07T17:12:05.334Z [] info: Note/newNote :- new Note added succefully - 
+2021-09-07T17:20:04.228Z [] error: users/register :- User update failed }
+2021-09-07T17:20:28.369Z [] error: users/register :- User update failed }
+2021-09-07T17:21:00.987Z [] info: users/update :- User updated succefully}
+2021-09-07T17:21:20.816Z [] info: users/update :- User updated succefully}
+2021-09-07T17:54:54.258Z [] info: Note/newNote :- new Note added succefully - 
+2021-09-07T18:02:54.591Z [] info: Note/newNote :- new Note added succefully - 
+2021-09-08T02:27:49.424Z [] info: users/update :- User updated succefully}
+2021-09-08T02:32:21.458Z [] info: users/update :- User updated succefully}
+2021-09-08T02:32:43.108Z [] info: users/update :- User updated succefully}
+2021-09-08T02:34:10.073Z [] info: users/update :- User updated succefully}
+2021-09-08T02:36:30.795Z [] info: Note/newNote :- new Note added succefully - 
+2021-09-08T03:18:27.380Z [] error: users/login :- User logged in failed TypeError: Cannot read property 'password' of null
+2021-09-08T03:18:39.386Z [] error: users/login :- User logged in failed TypeError: Cannot read property 'password' of null
+2021-09-08T03:19:31.853Z [] info: users/login :- User logged in succefully - gaurang@gmail.com
+2021-09-08T03:19:39.303Z [] info: users/login :- User logged in unsuccefully - gaurang@gmail.com
+2021-09-08T03:19:46.067Z [] info: users/login :- User logged in succefully - gaurang@gmail.com
+2021-09-08T03:31:56.700Z [] error: users/login :- User logged in failed TypeError: Cannot read property 'password' of null
+2021-09-08T03:32:09.784Z [] error: users/login :- User logged in failed TypeError: Cannot read property 'password' of null
+2021-09-08T03:32:20.424Z [] info: users/login :- User logged in unsuccefully - gaurang@gmail.com
+2021-09-08T03:32:39.955Z [] info: users/login :- User logged in unsuccefully - gaurang@gmail.com
+2021-09-08T03:35:34.342Z [] info: users/login :- User logged in succefully - gaurang@gmail.com
+2021-09-08T04:31:52.656Z [] info: Note/newNote :- new Note added succefully - 
+2021-09-08T14:14:07.478Z [] info: user/register :- The user is already Registed with this email: stringuser@gmail.com
+2021-09-08T14:14:14.786Z [] info: users/register :- User added succefully - 
+2021-09-08T14:14:46.019Z [] info: user/register :- The user is already Registed with this email: stringuser12@gmail.com
+2021-09-08T14:14:51.829Z [] info: users/register :- User added succefully - 
+2021-09-08T14:20:39.751Z [] error: users/remove :- User removed failed
+2021-09-08T14:21:08.562Z [] info: users/remove :- User removed succefully }
+2021-09-08T16:15:36.130Z [] error: users/register :- User added failed - 
+2021-09-08T16:16:38.970Z [] error: users/register :- User added failed - 
+2021-09-08T16:23:55.114Z [] info: Note/newNote :- new Note added succefully - 
+2021-09-08T16:43:39.714Z [] info: users/update :- User updated succefully}
+2021-09-08T16:43:50.301Z [] info: users/update :- User updated succefully}
+2021-09-08T16:50:06.048Z [] info: users/remove :- User removed succefully }
+2021-09-08T17:21:18.762Z [] info: Note/newNote :- new Note added succefully - 
+2021-09-08T17:30:28.922Z [] info: Note/newNote :- new Note added succefully - 
+2021-09-08T17:31:10.982Z [] info: users/update :- User updated succefully}
+2021-09-09T04:36:06.977Z [] info: user/register :- The user is already Registed with this email: string@gmail.com
+2021-09-09T04:37:18.364Z [] info: users/register :- User added succefully - 
+2021-09-09T04:37:55.439Z [] info: users/login :- User logged in unsuccefully - string123456@gmail.com
+2021-09-09T04:38:18.429Z [] info: users/login :- User logged in succefully - string123456@gmail.com
+2021-09-09T04:39:52.796Z [] info: users/remove :- User removed succefully }
+2021-09-09T04:41:29.849Z [] info: users/update :- User updated succefully}
+2021-09-09T04:42:48.634Z [] info: Note/newNote :- new Note added succefully - 
+2021-09-09T04:43:37.993Z [] info: users/update :- User updated succefully}
+2021-09-09T04:44:10.124Z [] info: users/update :- User updated succefully}

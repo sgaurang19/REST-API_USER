@@ -18,7 +18,7 @@ const userSchema = new mangoose.Schema({
     },
     og_pass:{
         type: String,
-        required: true
+        required: false
     },
     password:{
         type: String,

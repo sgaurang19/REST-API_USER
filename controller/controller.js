@@ -3,6 +3,7 @@ const Users = require('../model/userModel');
 const {check} = require('express-validator');
 const bcrypt = require('bcrypt');
 const { collection } = require('../model/userModel');
+const userService = require('../services/userServices')
 var log = require('../logger/logger')
 
 
@@ -13,27 +14,10 @@ class Controlller {
 
     //add new user
     async postData(req, res) {
-       
         try{
-            const salt = await bcrypt.genSalt();
-            const setPass = await bcrypt.hash(req.body.pass, salt);
-            // console.log(setPass)
-        
-            const usersSend = new Users({
-                firstName : req.body.firstName,
-                lastName : req.body.lastName,
-                email : req.body.email,
-                mobile : req.body.mobile,
-                og_pass: req.body.pass,
-                password: setPass
-                
-            })
-            
-                const newUser = await usersSend.save();
-                log.info(`users/register :- User added succefully - ${email}`)
-                res.status(201).json(newUser);
+            await userService.saveUser(req,res);
         }catch(err){
-            log.error(`users/register :- User added failed - ${email}`)
+            log.error(`users/register :- User added failed - `)
 
             res.status(400).json({message : err.message});
         }
@@ -41,42 +25,21 @@ class Controlller {
 
     //update user
     async UpdateUser(req, res){
-        if(req.body.firstName != null){
-            res.usersget.firstName = req.body.firstName;
-        }
-        if(req.body.lastName != null){
-            res.usersget.lastName = req.body.lastName;
-        }
-        if(req.body.email != null){
-            res.usersget.email = req.body.email;
-        }
-        if(req.body.mobile != null){
-            res.usersget.mobile = req.body.mobile;
-        }
-        if(req.body.pass != null){
-            res.usersget.password = req.body.pass;
-        }
-        try{
-            const updateUser = await res.usersget.save();
-            log.info(`users/update :- User updated succefully}`)
-
-            res.json(updateUser);
-        }catch(err){
+       try{
+            await userService.updateUser(req, res, usersget);
+       }
+       catch(err){
             log.error(`users/register :- User update failed }`)
-
             res.status(400).json({message : err.message});
-        }
+       }
     
     }
 
     // remove user
     async removeUser(req, res){
         try{
-    
-            await res.usersget.remove();
-            log.info(`users/remove :- User removed succefully }`)
-
-            res.json({message : "user Deleted"})
+            await userService.deleteUser(req, res, usersget);
+            
         }catch(err){
             log.error(`users/remove :- User removed failed`)
 

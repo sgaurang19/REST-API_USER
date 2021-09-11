@@ -1,0 +1,469 @@
+swagger: "2.0"
+info:
+  title: Fandoo-API
+  description: API for the Fundoo App.
+  version: 1.0.0
+host: localhost:3001
+basePath: /users
+schemes:
+  - http
+tags:
+- name: "users"
+  description: "user CRUD operations"
+- name: "notes"
+  description: "Everything about Notes"
+paths:
+        
+  /allusers:
+    get:
+      tags:
+        - "users"
+      summary: Returns a list of users.
+      description: Optional extended description in Markdown.
+      responses:
+        200:
+          description: OK
+  /{id}:
+    get:
+      tags:
+        - "users"
+      summary: Returns a user by ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the user to return.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: A user object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 4
+                  firstName:
+                    type: string
+                    example: Jessica Smith
+        400:
+          description: The specified user ID is invalid (not a number).
+        404:
+          description: A user with the specified ID was not found.
+        default:
+          description: Unexpected error
+  /login:
+    post:
+      tags:
+        - "users"
+      summary: Login The user.
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: user
+          description: The user to log in.
+          schema:
+            type: object
+            required:
+              - email
+            properties:
+              email:
+                type: string
+              pass:
+                type: string
+              
+      responses:
+        201:
+          description: Logged in user
+          
+  /register:
+    post:
+      tags:
+        - "users"
+      summary: Creates a new user.
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: req
+          description: The user to create.
+          schema:
+            type: object
+            required:
+              - email
+            properties:
+              firstName:
+                type: string
+              lastName:
+                type: string
+              email:
+                type: string
+              mobile:
+                type: integer
+                format: int64
+              pass:
+                type: string
+      responses:
+        201:
+          description: user Created
+
+  /remove/{id}:
+    delete:
+      tags:
+        - "users"
+      summary: Delete a user by ID.
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          description: The ID of the user to return.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: A user object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 4
+                  firstName:
+                    type: string
+                    example: Jessica Smith
+        400:
+          description: The specified user ID is invalid (not a number).
+        404:
+          description: A user with the specified ID was not found.
+        default:
+          description: Unexpected error
+ 
+  /update/{id}:
+    patch:
+      tags:
+        - "users"
+      summary: update a user by ID.
+      operationId: "updateUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id that need to be updated"
+      - in: "body"
+        name: "body"
+      description: "Updated user object"
+      required: true
+      schema:
+         type: object
+          required:
+            - email
+          properties:
+          firstName:
+            type: string
+          lastName:
+            type: string
+          email:
+            type: string
+          mobile:
+            type: integer
+            format: int64
+          pass:
+            type: string
+      responses:
+        200:
+          description: A user object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 4
+                  firstName:
+                    type: string
+                    example: Jessica Smith
+        400:
+          description: The specified user ID is invalid (not a number).
+        404:
+          description: A user with the specified ID was not found.
+        default:
+          description: Unexpected error
+
+# for notes
+  /notes/allnotes:
+    get:
+      tags:
+        - "notes"
+      summary: Returns a list of notes.
+      description: Optional extended description in Markdown.
+      responses:
+        200:
+          description: OK
+  /notes/{id}:
+    get:
+      tags:
+        - "notes"
+      summary: Returns a note by ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the note to return.
+          schema:
+            type: string
+            minimum: 1
+      responses:
+        200:
+          description: A Note object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 4
+                  firstName:
+                    type: string
+                    example: Jessica Smith
+        400:
+          description: The specified note ID is invalid (not a number).
+        404:
+          description: A note with the specified ID was not found.
+        default:
+          description: Unexpected error
+          
+  /notes/newNote:
+    post:
+      tags:
+        - "notes"
+      summary: Creates a new note.
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: req
+          description: The note to create.
+          schema:
+            type: object
+            required:
+              - email
+            properties:
+              title:
+                type: string
+                example: "Title of Your Note"
+              desc:
+                type: string
+                example: "Description of Your Note"
+              color:
+                type: string
+                example: "#ffffff"
+              isArchive:
+                type: boolean
+                default: false
+              isDeleted:
+                type: boolean
+                default: false
+      responses:
+        201:
+          description: note Created
+
+  # /notes/remove/{id}:
+  #   delete:
+  #     tags:
+  #       - "notes"
+  #     summary: Delete a user by ID.
+  #     parameters:
+  #       - name: id
+  #         in: query
+  #         required: true
+  #         description: The ID of the user to return.
+  #         schema:
+  #           type: string
+  #           minimum: 1
+  #     responses:
+  #       200:
+  #         description: A user object.
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: object
+  #               properties:
+  #                 id:
+  #                   type: integer
+  #                   format: int64
+  #                   example: 4
+  #                 firstName:
+  #                   type: string
+  #                   example: Jessica Smith
+  #       400:
+  #         description: The specified user ID is invalid (not a number).
+  #       404:
+  #         description: A user with the specified ID was not found.
+  #       default:
+  #         description: Unexpected error
+ 
+  /notes/updateNote/{id}:
+    patch:
+      tags:
+        - "notes"
+      summary: update a Note by ID.
+      operationId: "updateUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id that need to be updated"
+      - in: "body"
+        name: "body"
+      description: "Updated Note object"
+      required: true
+      schema:
+        type: object
+          required:
+            - email
+        properties:
+          title:
+            type: string
+            example: "New Title"
+          desc:
+            type: string
+            example: "New Description"
+          color:
+            type: string
+            example: "#ffffff"
+      responses:
+        200:
+          description: A user object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 4
+                  firstName:
+                    type: string
+                    example: Jessica Smith
+        400:
+          description: The specified Note ID is invalid (not a number).
+        404:
+          description: A Note with the specified ID was not found.
+        default:
+          description: Unexpected error
+
+           
+  /notes/archiveNote/{id}:
+    patch:
+      tags:
+        - "notes"
+      summary: Archive a Note by ID.
+      operationId: "updateUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id that need to be updated"
+      - in: "body"
+        name: "body"
+      description: "Updated Note object"
+      required: true
+      schema:
+        type: object
+          required:
+            - email
+        properties:
+          isArchive:
+            type: boolean
+            default: false
+            example: "true"
+      responses:
+        200:
+          description: A note object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 4
+                  firstName:
+                    type: string
+                    example: Jessica Smith
+        400:
+          description: The specified Note ID is invalid (not a number).
+        404:
+          description: A Note with the specified ID was not found.
+        default:
+          description: Unexpected error
+          
+  /notes/deleteNote/{id}:
+    patch:
+      tags:
+        - "notes"
+      summary: Delete a Note by ID.
+      operationId: "updateUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id that need to be updated"
+      - in: "body"
+        name: "body"
+      description: "Updated Note object"
+      required: true
+      schema:
+        type: object
+          required:
+            - email
+        properties:
+          isDeleted:
+            type: boolean
+            default: false
+            example: "true"
+      responses:
+        200:
+          description: A user object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 4
+                  firstName:
+                    type: string
+                    example: Jessica Smith
+        400:
+          description: The specified Note ID is invalid (not a number).
+        404:
+          description: A Note with the specified ID was not found.
+        default:
+          description: Unexpected error

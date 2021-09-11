@@ -6,3 +6,12 @@
 
 2021-09-07T04:15:16.350Z [] error: users/login :- User logged in failed RangeError [ERR_HTTP_INVALID_STATUS_CODE]: Invalid status code: login Successful 
 
+2021-09-07T17:20:04.228Z [] error: users/register :- User update failed }
+2021-09-07T17:20:28.369Z [] error: users/register :- User update failed }
+2021-09-08T03:18:27.380Z [] error: users/login :- User logged in failed TypeError: Cannot read property 'password' of null
+2021-09-08T03:18:39.386Z [] error: users/login :- User logged in failed TypeError: Cannot read property 'password' of null
+2021-09-08T03:31:56.700Z [] error: users/login :- User logged in failed TypeError: Cannot read property 'password' of null
+2021-09-08T03:32:09.784Z [] error: users/login :- User logged in failed TypeError: Cannot read property 'password' of null
+2021-09-08T14:20:39.751Z [] error: users/remove :- User removed failed
+2021-09-08T16:15:36.130Z [] error: users/register :- User added failed - 
+2021-09-08T16:16:38.970Z [] error: users/register :- User added failed - 

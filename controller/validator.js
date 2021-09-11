@@ -6,7 +6,7 @@ var log = require('../logger/logger')
 
 
 class ValidatedUser{
- async getCheckUsers(req, res){
+ async getCheckUsers(req, res, next){
     
     const {email} = req.body;
             // console.log(email)//
@@ -19,6 +19,9 @@ class ValidatedUser{
             // if(await bcrypt.compare(req.body.pass, user.password)){
                 log.info(`user/register :- The user is already Registed with this email: ${email}`)
                 return res.status(404).json({message : `The user is already Registed with this email: ${email}`});
+            }
+            else{
+                next();
             }
         }
         catch(err){}
