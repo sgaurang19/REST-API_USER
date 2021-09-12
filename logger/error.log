@@ -15,3 +15,12 @@
 2021-09-08T14:20:39.751Z [] error: users/remove :- User removed failed
 2021-09-08T16:15:36.130Z [] error: users/register :- User added failed - 
 2021-09-08T16:16:38.970Z [] error: users/register :- User added failed - 
+2021-09-12T12:46:44.921Z [] error: users/login :- User logged in failed TypeError: Cannot read property 'password' of null
+2021-09-12T12:47:00.196Z [] error: users/login :- User logged in failed TypeError: Cannot read property 'password' of null
+2021-09-12T12:47:32.046Z [] error: users/login :- User logged in failed TypeError: Cannot read property 'password' of null
+2021-09-12T12:49:53.641Z [] error: users/login :- User logged in failed Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+2021-09-12T12:50:35.771Z [] error: users/login :- User logged in failed Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+2021-09-12T12:51:02.202Z [] error: users/login :- User logged in failed Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+2021-09-12T12:51:53.164Z [] error: users/login :- User logged in failed Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+2021-09-12T16:02:17.515Z [] error: users/login :- User logged in failed Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+2021-09-12T16:20:06.013Z [] error: users/login :- User logged in failed Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client

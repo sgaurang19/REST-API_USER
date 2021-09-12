@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt');
 const { collection } = require('../model/userModel');
 const userService = require('../services/userServices')
 var log = require('../logger/logger')
+// const jwt = require('jsonwebtoken')
+const auth = require('../utils/auth')
 
 
 
@@ -61,9 +63,11 @@ class Controlller {
             if (bcrypt.compareSync(pass, user.password)) {
             // if(await bcrypt.compare(req.body.pass, user.password)){
                 log.info(`users/login :- User logged in succefully - ${email}`)
-                
+                //to gen the token
+                let tkn = await auth.generateToken(req, res, email);
+
                 // res.send("login Successful \n" + user )
-                res.send(user);
+                res.send(user +"\n\n Token: " + tkn);
             }
             else{
                 log.info(`users/login :- User logged in unsuccefully - ${email}`)

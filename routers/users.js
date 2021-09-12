@@ -3,9 +3,10 @@ const router = express.Router();
 const Users = require('../model/userModel');
 const ctrl = require('../controller/controller');
 const validation = require('../controller/validator');
+const auth = require('../utils/auth');
 
 //getting all
-router.get('/allusers', async (req, res)=>{
+router.get('/allusers',auth.authenticateUser, async (req, res)=>{
    try{
        const usersData = await Users.find()
         res.json(usersData);
@@ -15,15 +16,15 @@ router.get('/allusers', async (req, res)=>{
    }
 });
 //getting one
-router.get('/:id',ctrl.getUsers,(req, res)=>{
+router.get('/:id',auth.authenticateUser,ctrl.getUsers,(req, res)=>{
     res.send(res.usersget);
 });
 //create one
 router.post('/register',validation.getCheckUsers, validation.validation('CreateAndValidate'), ctrl.postData);
 //update 
-router.patch('/update/:id',ctrl.getUsers,ctrl.UpdateUser);
+router.patch('/update/:id',auth.authenticateUser,ctrl.getUsers,ctrl.UpdateUser);
 //delete 
-router.delete('/remove/:id',ctrl.getUsers,ctrl.removeUser);
+router.delete('/remove/:id',auth.authenticateUser,ctrl.getUsers,ctrl.removeUser);
 
 //login 
 router.post('/login', ctrl.checkLogin);
