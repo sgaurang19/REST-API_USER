@@ -9,6 +9,8 @@ const auth = require('../utils/auth');
 router.get('/allusers',auth.authenticateUser, async (req, res)=>{
    try{
        const usersData = await Users.find()
+       
+
         res.json(usersData);
 
    }catch(err){
@@ -28,6 +30,10 @@ router.delete('/remove/:id',auth.authenticateUser,ctrl.getUsers,ctrl.removeUser)
 
 //login 
 router.post('/login', ctrl.checkLogin);
+router.post('/reset', ctrl.resetUserPass);
+router.patch('/reset_password',auth.authenticateUser, ctrl.resetPassword);
+
+
 
 
 

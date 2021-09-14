@@ -2,6 +2,10 @@ const mangoose = require('mongoose');
 const validator = require('express-validator');
 
 const notesScheme = new mangoose.Schema({
+    user_id:{
+        type : String,
+        required: true
+    },
     title:{
         type : String,
         required: true

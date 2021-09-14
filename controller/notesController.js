@@ -3,7 +3,7 @@ const {check} = require('express-validator');
 const bcrypt = require('bcrypt');
 var log = require('../logger/logger')
 const notesServices = require('../services/notesServices');
-
+const auth = require('../utils/auth');
 
 
 let notesGet;
@@ -53,6 +53,17 @@ class Controlller {
             res.status(500).json({message : err.message});
         }
     }
+    async archivedNotes(req, res){
+        console.log("sadasadas")
+        try{
+            // const user_id = auth.getUserID(req)
+
+            await notesServices.archivedNotes(req, res)
+        }catch(err){
+            res.status(500).json({message : err.message});
+        }
+        
+    }
     // isDelete
     async deleteNote(req, res){
         try{
@@ -63,7 +74,16 @@ class Controlller {
             res.status(500).json({message : err.message});
         }
     }
+    async deletedNotes(req, res){
+        try{
+            // const user_id = auth.getUserID(req)
 
+            await notesServices.deletedNotes(req, res)
+        }catch(err){
+            res.status(500).json({message : err.message});
+        }
+        
+    }
 
     // //login
     // async checkLogin(req, res){

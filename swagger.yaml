@@ -23,7 +23,7 @@ paths:
           in: header
           required: true
       summary: Returns a list of users.
-      description: Optional extended description in Markdown.
+      description: Optional extended description.
       responses:
         200:
           description: OK
@@ -37,6 +37,9 @@ paths:
           in: path
           required: true
           description: The ID of the user to return.
+        - name: x-auth-token
+          in: header
+          required: true
           schema:
             type: string
             minimum: 1
@@ -213,6 +216,94 @@ paths:
         default:
           description: Unexpected error
 
+  /reset:
+    post:
+      tags:
+        - "users"
+      summary: update a user by ID.
+      operationId: "updateUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Updated user object"
+        required: true
+      schema:
+         type: object
+          required:
+            - email
+          properties:
+          email:
+            type: string
+      responses:
+        200:
+          description: A user object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 4
+                  firstName:
+                    type: string
+                    example: Jessica Smith
+        400:
+          description: The specified user ID is invalid (not a number).
+        404:
+          description: A user with the specified ID was not found.
+        default:
+          description: Unexpected error
+  /reset_password:
+    patch:
+      tags:
+        - "users"
+      summary: update a user by ID.
+      operationId: "updateUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Updated user object"
+        required: true
+      - name: x-auth-token
+        in: header
+        required: true
+      schema:
+         type: object
+          required:
+            - email
+          properties:
+          pass:
+            type: string
+      responses:
+        200:
+          description: A user object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 4
+                  firstName:
+                    type: string
+                    example: Jessica Smith
+        400:
+          description: The specified user ID is invalid (not a number).
+        404:
+          description: A user with the specified ID was not found.
+        default:
+          description: Unexpected error
+
 # for notes
   /notes/allnotes:
     get:
@@ -223,7 +314,7 @@ paths:
           in: header
           required: true
       summary: Returns a list of notes.
-      description: Optional extended description in Markdown.
+      description: Optional extended description.
       responses:
         200:
           description: OK
@@ -448,6 +539,69 @@ paths:
           
   /notes/deleteNote/{id}:
     patch:
+      tags:
+        - "notes"
+      summary: Delete a Note by ID.
+      operationId: "updateUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id that need to be updated"
+      - in: "body"
+        name: "body"
+        description: "Updated Note object"
+      - name: x-auth-token
+        in: header
+        required: true
+      required: true
+      schema:
+        type: object
+          required:
+            - email
+        properties:
+          isDeleted:
+            type: boolean
+            default: false
+            example: "true"
+      responses:
+        200:
+          description: A user object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 4
+                  firstName:
+                    type: string
+                    example: Jessica Smith
+        400:
+          description: The specified Note ID is invalid (not a number).
+        404:
+          description: A Note with the specified ID was not found.
+        default:
+          description: Unexpected error
+  /notes/archivedNotes:
+    get:
+      tags:
+        - "notes"
+      parameters:
+      - name: x-auth-token
+        in: header
+        required: true
+      summary: Returns a list of all archived notes.
+      description: Optional extended description.
+      responses:
+        200:
+          description: OK
+  /notes/deletedNotes:
+    get:
       tags:
         - "notes"
       summary: Delete a Note by ID.

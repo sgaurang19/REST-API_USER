@@ -7,10 +7,12 @@ const userService = require('../services/userServices')
 var log = require('../logger/logger')
 // const jwt = require('jsonwebtoken')
 const auth = require('../utils/auth')
+const mailer = require('../utils/mailer');
 
 
 
 let usersget;
+let user_id;
 
 class Controlller {
 
@@ -64,7 +66,7 @@ class Controlller {
             // if(await bcrypt.compare(req.body.pass, user.password)){
                 log.info(`users/login :- User logged in succefully - ${email}`)
                 //to gen the token
-                let tkn = await auth.generateToken(req, res, email);
+                let tkn = await auth.generateToken(req, res, user._id);
 
                 // res.send("login Successful \n" + user )
                 res.send(user +"\n\n Token: " + tkn);
@@ -72,7 +74,7 @@ class Controlller {
             else{
                 log.info(`users/login :- User logged in unsuccefully - ${email}`)
                 
-                res.send("authentication failed")
+                res.send({message:"authentication failed"})
                 
             }
         }
@@ -83,6 +85,37 @@ class Controlller {
             
         }
 
+
+    }
+    //reset
+    async resetUserPass(req, res){
+        const {email} = req.body;
+
+        let  useremail = await Users.findOne( {email} );
+        if(useremail != null){
+            let tkn = await auth.generateToken(req, res, useremail._id);
+            console.log(useremail._id);
+            const url=`http://localhost:3001/users/reset_password/${tkn}`
+            mailer.mailer(email,url, tkn )
+            res.status(201).json({message: `Reset Password link send to:- ${email}`});
+
+        }
+        else{
+            res.status(401).send({message:"email not found"})
+
+        }
+
+
+
+    }
+    //reset password
+    async resetPassword(req, res){
+        
+       user_id = await auth.getUserID(req)
+    //    res.user_id = user_id
+       let user_id11 = await Users.findById(user_id);
+       res.user_id = user_id11
+       userService.reset_Password(req, res, user_id11)
 
     }
 

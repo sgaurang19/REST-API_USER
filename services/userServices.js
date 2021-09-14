@@ -59,6 +59,26 @@ class UserService{
 
             res.json({message : "user Deleted"})
     }
+    async reset_Password(req, res, user_id){
+        if(req.body.pass != null){
+            const salt1 = await bcrypt.genSalt();
+
+            const setPass1 = await bcrypt.hash(req.body.pass, salt1);
+            res.user_id.og_pass= req.body.pass;
+            res.user_id.password = setPass1;
+        }
+        try{
+            const updateUser = await res.user_id.save();
+            log.info(`users/update :- User updated succefully}`)
+
+            res.status(201).json(updateUser);
+        }catch(err){
+            log.error(`users/register :- User update failed }`)
+
+            res.status(400).json({message : err.message});
+        }
+
+    }
 
 }
 
